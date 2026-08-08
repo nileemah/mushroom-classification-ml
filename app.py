@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+from io import StringIO
  
 st.write("""
 # Mushroom Classification app
