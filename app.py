@@ -15,3 +15,11 @@ if uploaded_file is not None:
     #st.write(stringio)
     string_data = stringio.read()
     st.write(string_data)
+
+option = st.selectbox(
+    "Select Model",
+    ("Logistic Regression", "Decision Tree", "kNN", "Naive Bayes","Random Forest")
+)
+
+# Display the selected option
+st.write("You selected:", option)
