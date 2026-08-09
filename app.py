@@ -62,18 +62,26 @@ if X_test is not None:
     # Display the selected option
     st.write("You selected:", option)
 
-    if option == "Logistic Regression" or option == "kNN":
-        scaler = StandardScaler()
-        X_test = scaler.transform(X_test)
 
+
+    if option == "Logistic Regression":
+        with open('./model/logistic_regression_scaler.pkl', 'rb') as f:
+            scaler = pickle.load(f)
+            X_test = scaler.transform(X_test)
+
+    if option == "kNN":
+        with open('./model/knn_scaler.pkl', 'rb') as f:
+            scaler = pickle.load(f)
+            X_test = scaler.transform(X_test)
+    
+
+     
     filename = "./model/" + model_map.get(option)
 
     with open(filename, "rb") as file:
         loaded_model = pickle.load(file)
-
-    y_predict = loaded_model.predict(X_test)
-
-    st.write(f"Predictions: {y_predict}")
+        y_predict = loaded_model.predict(X_test)        
+        st.write(f"Predictions: {y_predict}")
 
 
 st.write("## Model Evaluation Metrics")
